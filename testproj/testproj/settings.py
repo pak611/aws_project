@@ -9,8 +9,9 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-
+import os
 from pathlib import Path
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,8 +26,8 @@ SECRET_KEY = "django-insecure-af$a(2u9qg!!f%5fee9%jcvj2m)5b=od9afwb49rk)p1do*$hr
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['testprojenv1.eba-vmm5xnjq.us-west-2.elasticbeanstalk.com']
-
+#ALLOWED_HOSTS = ['neuralbind2env.eba-ua65crgr.us-west-2.elasticbeanstalk.com']
+ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -37,7 +38,18 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "crispy_forms",
+    "crispy_bootstrap5",
+    "rest_framework",
+    "runDocking",
 ]
+
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+
+CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -54,7 +66,7 @@ ROOT_URLCONF = "testproj.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [os.path.join(BASE_DIR, 'testproj/templates')],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -109,9 +121,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = "static/"
+STATIC_URL = "/static/"
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'testproj/static')]
+STATIC_ROOT = os.path.join(BASE_DIR,'static/')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
